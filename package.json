@@ -1,0 +1,34 @@
+{
+  "name": "layered-comments",
+  "private": true,
+  "version": "0.0.1",
+  "main": "./dist/extension.js",
+  "files": [
+    "dist"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "sideEffects": false,
+  "engines": {
+    "vscode": "^1.66.2"
+  },
+  "scripts": {
+    "dev": "rm -rf dist && tsup --watch",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix"
+  },
+  "devDependencies": {
+    "@antfu/eslint-config": "^0.21.1",
+    "@types/node": "^17.0.29",
+    "@types/vscode": "^1.66.0",
+    "eslint": "^8.14.0",
+    "tsup": "^5.12.6",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.6",
+    "vitest": "^0.10.0",
+    "vsce": "^2.7.0"
+  }
+}
