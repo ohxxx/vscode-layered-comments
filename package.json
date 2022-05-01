@@ -1,17 +1,34 @@
 {
   "name": "layered-comments",
-  "private": true,
+  "displayName": "layered-comments",
+  "description": "Layered Comments for VS Code",
   "version": "0.0.1",
+  "publisher": "xxxDeveloper",
   "main": "./dist/extension.js",
   "files": [
     "dist"
   ],
   "activationEvents": [
-    "*"
+    "onCommand:layered-comments.xxx"
   ],
   "sideEffects": false,
   "engines": {
     "vscode": "^1.66.2"
+  },
+  "contributes": {
+    "commands": [
+      {
+        "command": "layered-comments.xxx",
+        "title": "test"
+      }
+    ],
+    "keybindings": [
+      {
+        "command": "layered-comments.xxx",
+        "key": "ctrl+alt+/",
+        "mac": "ctrl+cmd+/"
+      }
+    ]
   },
   "scripts": {
     "dev": "rm -rf dist && tsup --watch",
