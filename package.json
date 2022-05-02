@@ -4,6 +4,14 @@
   "description": "Layered Comments for VS Code",
   "version": "0.0.1",
   "publisher": "xxxDeveloper",
+  "homepage": "https://github.com/xxxDeveloper/vscode-layered-comments#readme",
+  "bugs": {
+    "url": "https://github.com/xxxDeveloper/vscode-layered-comments/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/xxxDeveloper/vscode-layered-comments"
+  },
   "main": "./dist/extension.js",
   "files": [
     "dist"
@@ -36,7 +44,9 @@
     "build": "tsc && vite build",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint:fix": "eslint . --fix"
+    "lint:fix": "eslint . --fix",
+    "publish": "vsce publish --no-dependencies --allow-star-activation",
+    "pack": "vsce package --no-dependencies --allow-star-activation"
   },
   "devDependencies": {
     "@antfu/eslint-config": "^0.21.1",
