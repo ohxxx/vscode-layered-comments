@@ -22,11 +22,9 @@
 
 ## 快捷键
 
- **Mac**
-<kbd>Cmd</kbd> + <kbd>Ctrl</kbd> + <kbd>/</kbd>
+ **Mac：**<kbd>Cmd</kbd> + <kbd>Ctrl</kbd> + <kbd>/</kbd>
 
-**Win**
-<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>/</kbd>
+**Win：**<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>/</kbd>
 
 ## 配置
 
