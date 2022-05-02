@@ -2,6 +2,7 @@
 <h1 align="center">
   <img src="./assets/logo.png" height="100">
 </h1>
+
 ## 简介
 
 自定义代码片段分层注释，让代码结构更加简洁
@@ -22,7 +23,7 @@
 
 ## 快捷键
 
- **Mac：**<kbd>Cmd</kbd> + <kbd>Ctrl</kbd> + <kbd>/</kbd>
+**Mac：**<kbd>Cmd</kbd> + <kbd>Ctrl</kbd> + <kbd>/</kbd>
 
 **Win：**<kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>/</kbd>
 
