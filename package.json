@@ -9,7 +9,7 @@
     "dist"
   ],
   "activationEvents": [
-    "onCommand:layered-comments.xxx"
+    "onCommand:layered-comments.create"
   ],
   "sideEffects": false,
   "engines": {
@@ -18,18 +18,19 @@
   "contributes": {
     "commands": [
       {
-        "command": "layered-comments.xxx",
-        "title": "test"
+        "command": "layered-comments.create",
+        "title": "create"
       }
     ],
     "keybindings": [
       {
-        "command": "layered-comments.xxx",
+        "command": "layered-comments.create",
         "key": "ctrl+alt+/",
         "mac": "ctrl+cmd+/"
       }
     ]
   },
+  "icon": "assets/logo.png",
   "scripts": {
     "dev": "rm -rf dist && tsup --watch",
     "build": "tsc && vite build",
