@@ -43,6 +43,7 @@
     "dev": "rm -rf dist && tsup --watch",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "test": "vitest",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "publish": "vsce publish --no-dependencies --allow-star-activation",
