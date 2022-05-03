@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import Comments from '../src/comments'
+import type { ILang } from '../src/types'
 
 describe('【生成注释函数】- 格式', () => {
   it('单行 - 英文', () => {
@@ -83,7 +84,7 @@ describe('【生成注释函数】- 语言', () => {
       'rust',
     ]
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang as ILang).generate()).toBe(comments)
   })
 
   it(' # 注释', () => {
@@ -107,7 +108,7 @@ describe('【生成注释函数】- 语言', () => {
       'plaintext',
     ]
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 
   it(' <!-- 注释', () => {
@@ -125,7 +126,7 @@ describe('【生成注释函数】- 语言', () => {
     ]
 
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 
   it(' ; 注释', () => {
@@ -143,7 +144,7 @@ describe('【生成注释函数】- 语言', () => {
     ]
 
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 
   it(' -- 注释', () => {
@@ -160,7 +161,7 @@ describe('【生成注释函数】- 语言', () => {
     ]
 
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 
   it(' % 注释', () => {
@@ -177,7 +178,7 @@ describe('【生成注释函数】- 语言', () => {
     ]
 
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 
   it(' //- 注释', () => {
@@ -193,7 +194,7 @@ describe('【生成注释函数】- 语言', () => {
     ]
 
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 
   it(' (* 注释', () => {
@@ -209,7 +210,7 @@ describe('【生成注释函数】- 语言', () => {
     ]
 
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 
   it(' @REM 注释', () => {
@@ -225,7 +226,7 @@ describe('【生成注释函数】- 语言', () => {
     ]
 
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 
   it(' \' 注释', () => {
@@ -241,6 +242,6 @@ describe('【生成注释函数】- 语言', () => {
     ]
 
     for (const lang of languageSet)
-      expect(new Comments('xxx', lang).generate()).toBe(comments)
+      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
   })
 })
