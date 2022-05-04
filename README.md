@@ -7,21 +7,17 @@
 
 自定义代码片段分层注释，让代码结构更加简洁
 
+
+## 效果
+<h2 align="center">
+  <img src="./assets/effect.png">
+</h2>
+
 ## 功能
 
 1. 单行英文注释
 2. 多语言注释
-
-## 待办
-
-- [ ] 支持多行注释
-- [x] 支持多语言注释
-- [ ] 支持自定义配置
-   - [ ] 自定义符号
-   - [ ] 自定义宽度
-   - [ ] ...
-- [ ] 锚点定位???
-
+3. 自定义配置宽度及填充符号
 ## 快捷键
 
 **Mac：**<kbd>Cmd</kbd> + <kbd>Ctrl</kbd> + <kbd>/</kbd>
@@ -30,9 +26,17 @@
 
 ## 配置
 
-todo
+```json
+{
+  "layeredComments.style": {
+    // 填充宽度
+    "width": 40,
+    // 填充符号
+    "fillSym": "*"
+  }
+}
+```
 
-## 效果
-<h2 align="center">
-  <img src="./assets/effect.png">
-</h2>
+## 示例
+
+<video src="./assets/example.mov" />
