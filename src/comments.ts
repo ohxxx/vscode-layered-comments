@@ -6,10 +6,12 @@ import type { ILang, ILangSymbol } from './types'
 class Comments {
   #text: string
   #langSymbol: ILangSymbol
+  #indent: string
 
-  constructor(text: string, lang: ILang) {
+  constructor(text: string, lang: ILang, indent?: string) {
     this.#text = text
     this.#langSymbol = new LanguageSym(lang).commentsSymbol
+    this.#indent = indent ?? ''
   }
 
   /**
@@ -120,12 +122,14 @@ class Comments {
     const middleTextComments = this.createMiddleTextComments(textArr)
     const tailComments = this.createTailComments(start, end)
 
+    const indent = createRepeatChars(' ', this.#indent.length)
+
     return [
-      headComments,
-      middleSymComments,
-      ...middleTextComments,
-      middleSymComments,
-      tailComments,
+      `${indent}${headComments}`,
+      `${indent}${middleSymComments}`,
+      ...middleTextComments.map(v => `${indent}${v}`),
+      `${indent}${middleSymComments}`,
+      `${indent}${tailComments}`,
     ].join('\n')
   }
 
