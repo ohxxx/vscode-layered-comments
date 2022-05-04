@@ -1,7 +1,7 @@
 /**
- * 最大宽度
+ * 默认宽度
  */
-export const MAX_WIDTH = 40
+export const DEFAULT_WIDTH = 40
 
 /**
  * 默认填充符号

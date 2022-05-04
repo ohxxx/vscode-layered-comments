@@ -1,3 +1,5 @@
+import { window } from 'vscode'
+
 /**
  * 是否是整数
  */
@@ -14,3 +16,9 @@ export const createRepeatChars = (chars: string, num: number) => chars.repeat(nu
 export const includes = <A extends E, E>(arr: ReadonlyArray<A>, el: E): el is A => {
   return arr.includes(el as A)
 }
+
+/**
+ * 显示报错信息
+ */
+export const showErrorMsg = (msg: string) =>
+  window.showErrorMessage(`【layeredComments】： ${msg}`)

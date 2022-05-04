@@ -1,6 +1,7 @@
 import { window } from 'vscode'
 import Comments from './comments'
-import { getSelectedText, getTextIndent } from './config'
+import { getSelectedText, getTextIndent, getUserConfig } from './config'
+import { showErrorMsg } from './helpers'
 import type { ILang } from './types'
 
 export const create = () => {
@@ -9,7 +10,20 @@ export const create = () => {
 
   const languageId = editor?.document.languageId ?? 'typescript'
   const indent = getTextIndent(editor!)
-  const commentsText = new Comments(text, languageId as ILang, indent).generate()
+  const { style } = getUserConfig()
+  const commentsText = new Comments(
+    text,
+    languageId as ILang,
+    indent,
+    style,
+  ).generate()
+
+  console.warn('xxx#getUserConfig', commentsText)
+
+  if (!commentsText) {
+    showErrorMsg('注释文本长度过长/长度为空，请检查')
+    return
+  }
 
   editor?.edit((builder) => {
     builder.replace(selection, commentsText)

@@ -36,7 +36,26 @@
         "key": "ctrl+alt+/",
         "mac": "ctrl+cmd+/"
       }
-    ]
+    ],
+    "configuration": {
+      "properties": {
+        "layeredComments.style": {
+          "type": "object",
+          "properties": {
+            "fillSym": {
+              "type": "string",
+              "default": "*",
+              "description": "Fill symbol for layered comments"
+            },
+            "width": {
+              "type": "number",
+              "default": 40,
+              "description": "Width of the layered comments"
+            }
+          }
+        }
+      }
+    }
   },
   "icon": "assets/logo.png",
   "scripts": {

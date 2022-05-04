@@ -1,38 +1,55 @@
-import { DEFAULT_FILL_SYM, MAX_WIDTH } from './constants'
+import { DEFAULT_FILL_SYM, DEFAULT_WIDTH } from './constants'
 import { createRepeatChars, isInteger } from './helpers'
 import LanguageSym from './language-sym'
-import type { ILang, ILangSymbol } from './types'
+import type { IConfigStyle, ILang, ILangSymbol } from './types'
 
 class Comments {
   #text: string
   #langSymbol: ILangSymbol
   #indent: string
+  #style: IConfigStyle
 
-  constructor(text: string, lang: ILang, indent?: string) {
+  constructor(text: string, lang: ILang, indent?: string, style?: IConfigStyle) {
     this.#text = text
     this.#langSymbol = new LanguageSym(lang).commentsSymbol
     this.#indent = indent ?? ''
+    this.#style = {
+      width: DEFAULT_WIDTH,
+      fillSym: DEFAULT_FILL_SYM,
+      ...style,
+    }
+  }
+
+  /**
+   * 剩余填充宽度
+   */
+  private otherWidth(othetSym: string, ...args: string[]) {
+    const { width } = this.#style
+    const symSize = args?.reduce((pre, cur) => pre + cur.length, 0)
+    return ((width! - symSize) / othetSym!.length)
   }
 
   /**
    * 头部插入
    */
   private headInsert(sym: string) {
-    return `${sym}${createRepeatChars(DEFAULT_FILL_SYM, MAX_WIDTH - sym.length)}`
+    const { fillSym } = this.#style
+    return `${sym}${createRepeatChars(fillSym!, this.otherWidth(fillSym!, sym))}`
   }
 
   /**
    * 尾部插入
    */
   private tailInsert(sym: string) {
-    return `${createRepeatChars(DEFAULT_FILL_SYM, MAX_WIDTH - sym.length)}${sym}`
+    const { fillSym } = this.#style
+    return `${createRepeatChars(fillSym!, this.otherWidth(fillSym!, sym))}${sym}`
   }
 
   /**
    * 首尾插入
    */
-  private endToEndInsert(startSym: string, endSym: string, fill = DEFAULT_FILL_SYM) {
-    return `${startSym}${createRepeatChars(fill, MAX_WIDTH - startSym.length - endSym.length)}${endSym}`
+  private endToEndInsert(startSym: string, endSym: string, fill = this.#style.fillSym!) {
+    return `${startSym}${createRepeatChars(fill, this.otherWidth(fill, startSym, endSym))}${endSym}`
   }
 
   /**
@@ -40,8 +57,9 @@ class Comments {
    * 用于：注释块中间部分首尾填充字符
    */
   private fillSym(startSym: string, endSym: string) {
-    const headSym = ['/*', '<!--'].includes(startSym) ? DEFAULT_FILL_SYM : startSym
-    const tailSym = headSym === DEFAULT_FILL_SYM ? DEFAULT_FILL_SYM : endSym
+    const { fillSym } = this.#style
+    const headSym = ['/*', '<!--'].includes(startSym) ? fillSym! : startSym
+    const tailSym = headSym === fillSym! ? fillSym! : endSym
 
     return { headSym, tailSym }
   }
@@ -70,12 +88,16 @@ class Comments {
    */
   private createMiddleTextComments(arr: string[]) {
     const { start, end } = this.#langSymbol
+    const { width } = this.#style
     const { headSym, tailSym } = this.fillSym(start, end)
 
     const text = arr[0]
-    const fillWidth = (MAX_WIDTH - text.length - headSym.length - tailSym.length) / 2
+    const fillWidth = (width! - text.length - headSym.length - tailSym.length) / 2
     const leftWidth = isInteger(fillWidth) ? Math.floor(fillWidth) : Math.ceil(fillWidth)
     const rightWidth = fillWidth
+
+    if (text?.length > (width! - headSym?.length - tailSym?.length))
+      return []
 
     return [
       [
@@ -113,7 +135,7 @@ class Comments {
   /**
    * 创建注释
    */
-  private createComments(): string {
+  private createComments() {
     const { start, end } = this.#langSymbol
     const textArr = this.textFormat(this.#text)
 
@@ -123,6 +145,9 @@ class Comments {
     const tailComments = this.createTailComments(start, end)
 
     const indent = createRepeatChars(' ', this.#indent.length)
+
+    if (!middleTextComments.length)
+      return null
 
     return [
       `${indent}${headComments}`,
@@ -136,9 +161,9 @@ class Comments {
   /**
    * 生成最终注释
    */
-  public generate(): string {
+  public generate() {
     if (!this.#text)
-      return ''
+      return null
 
     return this.createComments()
   }
