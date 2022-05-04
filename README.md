@@ -39,4 +39,6 @@
 
 ## 示例
 
-<video src="./assets/example.mov" />
+<h2 align="center">
+  <img src="./assets/example.gif">
+</h2>
