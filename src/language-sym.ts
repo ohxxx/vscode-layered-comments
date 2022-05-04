@@ -3,10 +3,10 @@ import { includes } from './helpers'
 import type { IEndSym, ILang, ILangSymbol, IStartSym } from './types'
 
 class LanguageSym {
-  lang: ILang = 'typescript'
+  #lang: ILang = 'typescript'
 
   constructor(lang?: ILang) {
-    this.lang = lang ?? 'typescript'
+    this.#lang = lang ?? 'typescript'
   }
 
   /**
@@ -15,7 +15,7 @@ class LanguageSym {
   private getLangIndex() {
     const index = Object
       .values(LANGUAGE_SYM)
-      .findIndex(v => includes(v, this.lang))
+      .findIndex(v => includes(v, this.#lang))
 
     return index > -1 ? index : 0
   }

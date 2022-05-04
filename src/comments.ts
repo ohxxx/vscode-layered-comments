@@ -4,12 +4,12 @@ import LanguageSym from './language-sym'
 import type { ILang, ILangSymbol } from './types'
 
 class Comments {
-  text: string
-  langSymbol: ILangSymbol
+  #text: string
+  #langSymbol: ILangSymbol
 
   constructor(text: string, lang: ILang) {
-    this.text = text
-    this.langSymbol = new LanguageSym(lang).commentsSymbol
+    this.#text = text
+    this.#langSymbol = new LanguageSym(lang).commentsSymbol
   }
 
   /**
@@ -67,7 +67,7 @@ class Comments {
    * 填充中间文本注释
    */
   private createMiddleTextComments(arr: string[]) {
-    const { start, end } = this.langSymbol
+    const { start, end } = this.#langSymbol
     const { headSym, tailSym } = this.fillSym(start, end)
 
     const text = arr[0]
@@ -112,8 +112,8 @@ class Comments {
    * 创建注释
    */
   private createComments(): string {
-    const { start, end } = this.langSymbol
-    const textArr = this.textFormat(this.text)
+    const { start, end } = this.#langSymbol
+    const textArr = this.textFormat(this.#text)
 
     const headComments = this.createHeadComments(start, end)
     const middleSymComments = this.createMiddleSymComments(start, end)
@@ -133,7 +133,7 @@ class Comments {
    * 生成最终注释
    */
   public generate(): string {
-    if (!this.text)
+    if (!this.#text)
       return ''
 
     return this.createComments()

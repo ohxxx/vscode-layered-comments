@@ -41,7 +41,7 @@
   "icon": "assets/logo.png",
   "scripts": {
     "dev": "rm -rf dist && tsup --watch",
-    "build": "tsc && vite build",
+    "build": "tsup",
     "preview": "vite preview",
     "test": "vitest",
     "lint": "eslint .",
