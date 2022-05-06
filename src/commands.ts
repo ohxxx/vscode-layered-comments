@@ -18,10 +18,8 @@ export const create = () => {
     style,
   ).generate()
 
-  console.warn('xxx#getUserConfig', commentsText)
-
   if (!commentsText) {
-    showErrorMsg('注释文本长度过长/长度为空，请检查')
+    showErrorMsg('注释文本的长度过长或长度为空，请检查后重试')
     return
   }
 

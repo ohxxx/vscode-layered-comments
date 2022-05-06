@@ -16,3 +16,16 @@ export const xxxFn = () => {
 -                  xxx                 -
 -                                      -
 -------------------------------------- */
+
+/*****************************************
+*                                        *
+*  export const xxxFn2 = () => {         *
+*    const xxx = '666'                   *
+*    const xxxFn = () => {               *
+*      return 'xxx'                      *
+*    }                                   *
+*    console.warn('xxx#xxx', xxx)        *
+*    console.warn('xxx#xxx()', xxxFn())  *
+*  }                                     *
+*                                        *
+*****************************************/

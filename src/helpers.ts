@@ -21,4 +21,4 @@ export const includes = <A extends E, E>(arr: ReadonlyArray<A>, el: E): el is A 
  * 显示报错信息
  */
 export const showErrorMsg = (msg: string) =>
-  window.showErrorMessage(`【layeredComments】： ${msg}`)
+  window.showErrorMessage(`[Layered Comments]: ${msg}`)

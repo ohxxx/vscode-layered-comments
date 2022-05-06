@@ -86,28 +86,34 @@ class Comments {
   /**
    * 填充中间文本注释
    */
-  private createMiddleTextComments(arr: string[]) {
+  private createMiddleTextComments(textArr: string[]) {
     const { start, end } = this.#langSymbol
     const { width } = this.#style
     const { headSym, tailSym } = this.fillSym(start, end)
+    const fillWidth = width! - headSym.length - tailSym.length
 
-    const text = arr[0]
-    const fillWidth = (width! - text.length - headSym.length - tailSym.length) / 2
-    const leftWidth = isInteger(fillWidth) ? Math.floor(fillWidth) : Math.ceil(fillWidth)
-    const rightWidth = fillWidth
+    if (textArr.length === 1)
+      textArr[0] = textArr[0].replace(/^\s*/, '')
 
-    if (text?.length > (width! - headSym?.length - tailSym?.length))
+    const maxTextWidth = Math.max(...textArr.map(v => v.length))
+    if (maxTextWidth > fillWidth)
       return []
 
-    return [
-      [
+    const result = textArr?.map((v) => {
+      const bisectWidth = (fillWidth - maxTextWidth) / 2
+      const leftWidth = isInteger(bisectWidth) ? Math.floor(bisectWidth) : Math.ceil(bisectWidth)
+      const rightWidth = fillWidth - leftWidth - v.length
+
+      return [
         headSym,
         createRepeatChars(' ', leftWidth),
-        text,
+        v,
         createRepeatChars(' ', rightWidth),
         tailSym,
-      ].join(''),
-    ]
+      ].join('')
+    })
+
+    return result
   }
 
   /**
@@ -129,7 +135,7 @@ class Comments {
     return text
       .split(/\n/)
       .filter(v => v.match(/\S/))
-      .map(s => s.replace(/(^\s*)|(\s*$)/, ''))
+      .map(s => s.replace(/\s*$/, ''))
   }
 
   /**
