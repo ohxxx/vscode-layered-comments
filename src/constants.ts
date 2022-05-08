@@ -85,3 +85,11 @@ export const CLOSED_SYM = {
   '@REM': '@REM',
   '\'': '\'',
 } as const
+
+/**
+ * 提示信息
+ */
+export const HINT_MSG = {
+  EMPTY: '注释文本的长度为空，请检查后重试',
+  TOO_LONG: '注释文本的长度过长，请检查后重试',
+}

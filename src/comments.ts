@@ -131,7 +131,6 @@ class Comments {
    * 文本格式化
    */
   private textFormat(text: string) {
-    // 目前只支持单行注释
     return text
       .split(/\n/)
       .filter(v => v.match(/\S/))

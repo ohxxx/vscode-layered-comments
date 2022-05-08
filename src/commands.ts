@@ -1,12 +1,18 @@
 import { window } from 'vscode'
 import Comments from './comments'
 import { getSelectedText, getTextIndent, getUserConfig } from './config'
+import { HINT_MSG } from './constants'
 import { showErrorMsg } from './helpers'
 import type { ILang } from './types'
 
 export const create = () => {
   const editor = window.activeTextEditor
   const { text, selection } = getSelectedText(editor!)
+
+  if (!text) {
+    showErrorMsg(HINT_MSG.EMPTY)
+    return
+  }
 
   const languageId = editor?.document.languageId ?? 'typescript'
   const indent = getTextIndent(editor!)
@@ -19,7 +25,7 @@ export const create = () => {
   ).generate()
 
   if (!commentsText) {
-    showErrorMsg('注释文本的长度过长或长度为空，请检查后重试')
+    showErrorMsg(HINT_MSG.TOO_LONG)
     return
   }
 
