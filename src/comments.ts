@@ -1,6 +1,6 @@
 import { DEFAULT_FILL_SYM, DEFAULT_WIDTH } from './constants'
 import { createRepeatChars, isInteger } from './helpers'
-import LanguageSym from './language-sym'
+import LanguageSym from './languageSym'
 import type { IConfigStyle, ILang, ILangSymbol } from './types'
 
 class Comments {
