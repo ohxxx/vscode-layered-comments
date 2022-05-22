@@ -20,43 +20,27 @@ class Comments {
     }
   }
 
-  /**
-   * 剩余填充宽度
-   */
-  private otherWidth(othetSym: string, ...args: string[]) {
+  #otherWidth(othetSym: string, ...args: string[]) {
     const { width } = this.#style
     const symSize = args?.reduce((pre, cur) => pre + cur.length, 0)
     return ((width! - symSize) / othetSym!.length)
   }
 
-  /**
-   * 头部插入
-   */
-  private headInsert(sym: string) {
+  #headInsert(sym: string) {
     const { fillSym } = this.#style
-    return `${sym}${createRepeatChars(fillSym!, this.otherWidth(fillSym!, sym))}`
+    return `${sym}${createRepeatChars(fillSym!, this.#otherWidth(fillSym!, sym))}`
   }
 
-  /**
-   * 尾部插入
-   */
-  private tailInsert(sym: string) {
+  #tailInsert(sym: string) {
     const { fillSym } = this.#style
-    return `${createRepeatChars(fillSym!, this.otherWidth(fillSym!, sym))}${sym}`
+    return `${createRepeatChars(fillSym!, this.#otherWidth(fillSym!, sym))}${sym}`
   }
 
-  /**
-   * 首尾插入
-   */
-  private endToEndInsert(startSym: string, endSym: string, fill = this.#style.fillSym!) {
-    return `${startSym}${createRepeatChars(fill, this.otherWidth(fill, startSym, endSym))}${endSym}`
+  #endToEndInsert(startSym: string, endSym: string, fill = this.#style.fillSym!) {
+    return `${startSym}${createRepeatChars(fill, this.#otherWidth(fill, startSym, endSym))}${endSym}`
   }
 
-  /**
-   * 填充字符
-   * 用于：注释块中间部分首尾填充字符
-   */
-  private fillSym(startSym: string, endSym: string) {
+  #fillSym(startSym: string, endSym: string) {
     const { fillSym } = this.#style
     const headSym = ['/*', '<!--'].includes(startSym) ? fillSym! : startSym
     const tailSym = headSym === fillSym! ? fillSym! : endSym
@@ -64,32 +48,23 @@ class Comments {
     return { headSym, tailSym }
   }
 
-  /**
-   * 创建头部注释
-   */
-  private createHeadComments(startSym: string, endSym: string) {
+  #createHeadComments(startSym: string, endSym: string) {
     if (['/*', '<!--'].includes(startSym))
-      return this.headInsert(startSym)
+      return this.#headInsert(startSym)
 
     else
-      return this.endToEndInsert(startSym, endSym)
+      return this.#endToEndInsert(startSym, endSym)
   }
 
-  /**
-   * 填充中间空白区域
-   */
-  private createMiddleSymComments(startSym: string, endSym: string) {
-    const { headSym, tailSym } = this.fillSym(startSym, endSym)
-    return this.endToEndInsert(headSym, tailSym, ' ')
+  #createMiddleSymComments(startSym: string, endSym: string) {
+    const { headSym, tailSym } = this.#fillSym(startSym, endSym)
+    return this.#endToEndInsert(headSym, tailSym, ' ')
   }
 
-  /**
-   * 填充中间文本注释
-   */
-  private createMiddleTextComments(textArr: string[]) {
+  #createMiddleTextComments(textArr: string[]) {
     const { start, end } = this.#langSymbol
     const { width } = this.#style
-    const { headSym, tailSym } = this.fillSym(start, end)
+    const { headSym, tailSym } = this.#fillSym(start, end)
     const fillWidth = width! - headSym.length - tailSym.length
 
     if (textArr.length === 1)
@@ -116,38 +91,29 @@ class Comments {
     return result
   }
 
-  /**
-   * 创建尾部注释
-   */
-  private createTailComments(startSym: string, endSym: string) {
+  #createTailComments(startSym: string, endSym: string) {
     if (['*/', '-->'].includes(endSym))
-      return this.tailInsert(endSym)
+      return this.#tailInsert(endSym)
 
     else
-      return this.endToEndInsert(startSym, endSym)
+      return this.#endToEndInsert(startSym, endSym)
   }
 
-  /**
-   * 文本格式化
-   */
-  private textFormat(text: string) {
+  #textFormat(text: string) {
     return text
       .split(/\n/)
       .filter(v => v.match(/\S/))
       .map(s => s.replace(/\s*$/, ''))
   }
 
-  /**
-   * 创建注释
-   */
-  private createComments() {
+  #createComments() {
     const { start, end } = this.#langSymbol
-    const textArr = this.textFormat(this.#text)
+    const textArr = this.#textFormat(this.#text)
 
-    const headComments = this.createHeadComments(start, end)
-    const middleSymComments = this.createMiddleSymComments(start, end)
-    const middleTextComments = this.createMiddleTextComments(textArr)
-    const tailComments = this.createTailComments(start, end)
+    const headComments = this.#createHeadComments(start, end)
+    const middleSymComments = this.#createMiddleSymComments(start, end)
+    const middleTextComments = this.#createMiddleTextComments(textArr)
+    const tailComments = this.#createTailComments(start, end)
 
     const indent = createRepeatChars(' ', this.#indent.length)
 
@@ -163,14 +129,11 @@ class Comments {
     ].join('\n')
   }
 
-  /**
-   * 生成最终注释
-   */
-  public generate() {
+  get generate(): string | null {
     if (!this.#text)
       return null
 
-    return this.createComments()
+    return this.#createComments()
   }
 }
 

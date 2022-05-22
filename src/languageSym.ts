@@ -9,10 +9,7 @@ class LanguageSym {
     this.#lang = lang ?? 'typescript'
   }
 
-  /**
-   * 获取语言匹配后符号索引
-   */
-  private getLangIndex() {
+  #getLangIndex() {
     const index = Object
       .values(LANGUAGE_SYM)
       .findIndex(v => includes(v, this.#lang))
@@ -20,18 +17,12 @@ class LanguageSym {
     return index > -1 ? index : 0
   }
 
-  /**
-   * 获取语言符号
-   */
-  private getLangSymbol() {
-    return Object.keys(LANGUAGE_SYM)[this.getLangIndex()] as IStartSym
+  #getLangSymbol() {
+    return Object.keys(LANGUAGE_SYM)[this.#getLangIndex()] as IStartSym
   }
 
-  /**
-   * 当前语言的注释符号
-   */
   get commentsSymbol(): ILangSymbol {
-    const result = this.getLangSymbol()
+    const result = this.#getLangSymbol()
 
     return {
       start: result,

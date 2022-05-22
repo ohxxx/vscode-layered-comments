@@ -1,16 +1,7 @@
-/**
- * 默认宽度
- */
 export const DEFAULT_WIDTH = 40
 
-/**
- * 默认填充符号
- */
 export const DEFAULT_FILL_SYM = '*'
 
-/**
- * 语言注释符号
- */
 export const LANGUAGE_SYM = {
   '/*': [
     'c', 'cpp',
@@ -70,9 +61,6 @@ export const LANGUAGE_SYM = {
   ],
 } as const
 
-/**
- * 闭合符号
- */
 export const CLOSED_SYM = {
   '/*': '*/',
   '#': '#',
@@ -86,9 +74,6 @@ export const CLOSED_SYM = {
   '\'': '\'',
 } as const
 
-/**
- * 提示信息
- */
 export const HINT_MSG = {
   EMPTY: '注释文本的长度为空，请检查后重试',
   TOO_LONG: '注释文本的长度过长，请检查后重试',

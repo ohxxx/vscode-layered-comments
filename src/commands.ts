@@ -22,7 +22,7 @@ export const create = () => {
     languageId as ILang,
     indent,
     style,
-  ).generate()
+  ).generate
 
   if (!commentsText) {
     showErrorMsg(HINT_MSG.TOO_LONG)
