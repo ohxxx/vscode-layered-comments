@@ -20,10 +20,10 @@ class Comments {
     }
   }
 
-  #otherWidth(othetSym: string, ...args: string[]) {
+  #otherWidth(otherSym: string, ...args: string[]) {
     const { width } = this.#style
     const symSize = args?.reduce((pre, cur) => pre + cur.length, 0)
-    return ((width! - symSize) / othetSym!.length)
+    return ((width! - symSize) / otherSym!.length)
   }
 
   #headInsert(sym: string) {
