@@ -3,6 +3,7 @@
   "displayName": "Layered Comments",
   "version": "0.0.9",
   "description": "Layered Comments for VS Code",
+  "keywords": ["layered", "comments", "annotate", "single comment", "multiline comment"],
   "publisher": "xxxDeveloper",
   "homepage": "https://github.com/xxxDeveloper/vscode-layered-comments#readme",
   "bugs": {
