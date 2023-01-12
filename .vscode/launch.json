@@ -17,6 +17,6 @@
         "${workspaceFolder}/dist/**/*.js"
       ],
       "preLaunchTask": "npm: dev"
-    },
+    }
   ]
 }
