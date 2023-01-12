@@ -15,7 +15,7 @@ export const LANGUAGE_SYM = {
     'stylus', 'vue',
     'javascript', 'javascriptreact',
     'typescript', 'typescriptreact',
-    'rust',
+    'wa', 'rust',
   ],
   '#': [
     'bash', 'dockerfile',

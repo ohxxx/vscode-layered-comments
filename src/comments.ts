@@ -49,11 +49,13 @@ class Comments {
   }
 
   #createHeadComments(startSym: string, endSym: string) {
-    if (['/*', '<!--'].includes(startSym))
+    if (['/*', '<!--'].includes(startSym)) {
       return this.#headInsert(startSym)
+    }
 
-    else
+    else {
       return this.#endToEndInsert(startSym, endSym)
+    }
   }
 
   #createMiddleSymComments(startSym: string, endSym: string) {
@@ -67,12 +69,12 @@ class Comments {
     const { headSym, tailSym } = this.#fillSym(start, end)
     const fillWidth = width! - headSym.length - tailSym.length
 
-    if (textArr.length === 1)
+    if (textArr.length === 1) {
       textArr[0] = textArr[0].replace(/^\s*/, '')
+    }
 
     const maxTextWidth = Math.max(...textArr.map(v => v.length))
-    if (maxTextWidth > fillWidth)
-      return []
+    if (maxTextWidth > fillWidth) { return [] }
 
     const result = textArr?.map((v) => {
       const bisectWidth = (fillWidth - maxTextWidth) / 2
@@ -92,11 +94,13 @@ class Comments {
   }
 
   #createTailComments(startSym: string, endSym: string) {
-    if (['*/', '-->'].includes(endSym))
+    if (['*/', '-->'].includes(endSym)) {
       return this.#tailInsert(endSym)
+    }
 
-    else
+    else {
       return this.#endToEndInsert(startSym, endSym)
+    }
   }
 
   #textFormat(text: string) {
@@ -117,8 +121,7 @@ class Comments {
 
     const indent = createRepeatChars(' ', this.#indent.length)
 
-    if (!middleTextComments.length)
-      return null
+    if (!middleTextComments.length) { return null }
 
     return [
       `${indent}${headComments}`,
@@ -130,8 +133,7 @@ class Comments {
   }
 
   get generate(): string | null {
-    if (!this.#text)
-      return null
+    if (!this.#text) { return null }
 
     return this.#createComments()
   }

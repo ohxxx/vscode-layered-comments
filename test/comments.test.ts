@@ -4,7 +4,7 @@ import type { ILang } from '../src/types'
 
 describe('【生成注释函数】- 格式', () => {
   it('单行 - 英文', () => {
-    const text = new Comments('xxx', 'typescript').generate()
+    const text = new Comments('xxx', 'typescript').generate
     expect(text).toMatchInlineSnapshot(`
       "/***************************************
       *                                      *
@@ -15,7 +15,7 @@ describe('【生成注释函数】- 格式', () => {
   })
 
   it('多行 - 英文', () => {
-    const text = new Comments('Halo, I\'m xxx\nI am a developer', 'typescript').generate()
+    const text = new Comments('Halo, I\'m xxx\nI am a developer', 'typescript').generate
     expect(text).toMatchInlineSnapshot(`
       "/***************************************
       *                                      *
@@ -48,10 +48,9 @@ describe('【生成注释函数】- 语言', () => {
       'stylus', 'vue',
       'javascript', 'javascriptreact',
       'typescript', 'typescriptreact',
-      'rust',
+      'wa', 'rust',
     ]
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang as ILang).generate).toBe(comments) }
   })
 
   it(' # 注释', () => {
@@ -74,8 +73,7 @@ describe('【生成注释函数】- 语言', () => {
       'yml', 'home-assistant',
       'plaintext',
     ]
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 
   it(' <!-- 注释', () => {
@@ -92,8 +90,7 @@ describe('【生成注释函数】- 语言', () => {
       'xml', 'xsl',
     ]
 
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 
   it(' ; 注释', () => {
@@ -110,8 +107,7 @@ describe('【生成注释函数】- 语言', () => {
       'rainmeter',
     ]
 
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 
   it(' -- 注释', () => {
@@ -127,8 +123,7 @@ describe('【生成注释函数】- 语言', () => {
       'lua',
     ]
 
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 
   it(' % 注释', () => {
@@ -144,8 +139,7 @@ describe('【生成注释函数】- 语言', () => {
       'matlab',
     ]
 
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 
   it(' //- 注释', () => {
@@ -160,8 +154,7 @@ describe('【生成注释函数】- 语言', () => {
       'jade', 'pug',
     ]
 
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 
   it(' (* 注释', () => {
@@ -176,8 +169,7 @@ describe('【生成注释函数】- 语言', () => {
       'fsharp',
     ]
 
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 
   it(' @REM 注释', () => {
@@ -192,8 +184,7 @@ describe('【生成注释函数】- 语言', () => {
       'bat',
     ]
 
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 
   it(' \' 注释', () => {
@@ -208,7 +199,6 @@ describe('【生成注释函数】- 语言', () => {
       'vb',
     ]
 
-    for (const lang of languageSet)
-      expect(new Comments('xxx', lang as ILang).generate()).toBe(comments)
+    for (const lang of languageSet) { expect(new Comments('xxx', lang as ILang).generate).toBe(comments) }
   })
 })

@@ -5,15 +5,13 @@ describe('【isInteger】- 是否是整数函数', () => {
   it('是整数', () => {
     const truthy = [10, 1.0, -1.00, -10, 22]
 
-    for (const item of truthy)
-      expect(isInteger(item)).toBeTruthy()
+    for (const item of truthy) { expect(isInteger(item)).toBeTruthy() }
   })
 
   it('不是整数', () => {
     const falsy = [1.01, 3.1, 12.22, -10.1]
 
-    for (const item of falsy)
-      expect(isInteger(item)).toBeFalsy()
+    for (const item of falsy) { expect(isInteger(item)).toBeFalsy() }
   })
 })
 
