@@ -2,7 +2,7 @@
   "publisher": "xxx",
   "name": "layered-comments",
   "displayName": "Layered Comments",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Layered Comments for VS Code",
   "homepage": "https://github.com/ohxxx/vscode-layered-comments#readme",
   "repository": {
